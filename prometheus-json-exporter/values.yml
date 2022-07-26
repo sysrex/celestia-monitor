@@ -1,0 +1,26 @@
+configuration:
+  config: |
+    ---
+    metrics:
+      - name: bootstrapper
+        path: "{ .result.node_info }"
+        help: Bootstrap node moniker
+        labels:
+          network: '{.network}'
+          location: '{.moniker}'
+        values:
+          network: '{.network}'
+          location: '{.moniker}'
+
+      - name: sync_info
+        type: object
+        help: Sync information from the Celestia bootstrappers
+        path: '{ .result[*] }'
+        labels:
+          latest_block_height: '{.latest_block_height}'
+          latest_block_time: '{.latest_block_time}'
+        values:
+          latest_block_height: '{ [latest_block_height] }'
+          latest_block_time: '{.latest_block_time}'
+    headers:
+      X-Dummy: celestia
