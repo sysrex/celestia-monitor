@@ -1591,6 +1591,7 @@ extraScrapeConfigs: |
     static_configs:
       - targets:
           - http://192.81.208.113:26657/status
+          - http://46.101.42.40:26657/status
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

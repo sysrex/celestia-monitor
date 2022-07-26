@@ -3,7 +3,7 @@ configuration:
     ---
     metrics:
       - name: bootstrapper
-        path: "{ .result.node_info }"
+        path: '{ .result }'
         help: Bootstrap node moniker
         labels:
           network: '{.network}'
@@ -15,12 +15,12 @@ configuration:
       - name: sync_info
         type: object
         help: Sync information from the Celestia bootstrappers
-        path: '{ .result[*] }'
+        path: '{ .result }'
         labels:
-          latest_block_height: '{.latest_block_height}'
-          latest_block_time: '{.latest_block_time}'
+          latest_block_height: '{ .sync_info.latest_block_height }'
+          latest_block_time: '{ .sync.latest_block_time}'
         values:
-          latest_block_height: '{ [latest_block_height] }'
-          latest_block_time: '{.latest_block_time}'
+          latest_block_height: '{ .sync_info.latest_block_height }'
+          latest_block_time: '{ .sync_info.latest_block_time}'
     headers:
       X-Dummy: celestia
